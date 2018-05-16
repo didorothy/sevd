@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="ApplicationType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="LanguageID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MerchantType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="MerchantID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="MerchantKey" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="State" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Country" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Telephone" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NameType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="FirstName" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="MI" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="LastName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CompanyType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Address" type="AddressType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Name" type="NameType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Address" type="AddressType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Company" type="CompanyType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfPersonType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonType" nillable="true" type="PersonType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Level2Type">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="CustomerNumber" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="TaxAmount" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Level3LineItemType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="CommodityCode" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ProductCode" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="UnitOfMeasure" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="UnitCost" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="TaxAmount" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="TaxRate" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="DiscountAmount" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AlternateTaxIdentifier" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TaxTypeApplied" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="DiscountIndicator" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="NetGrossIndicator" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="ExtendedItemAmount" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="DebitCreditIndicator" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfLevel3LineItemType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Level3LineItemType" nillable="true" type="Level3LineItemType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Level3Type">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Level2" type="Level2Type"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="ShippingAmount" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="DestinationZipCode" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="DestinationCountryCode" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VATNumber" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="DiscountAmount" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="DutyAmount" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="NationalTaxAmount" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VATInvoiceNumber" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="VATTaxAmount" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="VATTaxRate" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="LineItems" type="ArrayOfLevel3LineItemType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransactionBaseType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="TransactionID" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Reference1" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Reference2" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Amount" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AuthCode" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VANReference" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransactionStatusQueryType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfTransactionStatusQueryType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionStatusQueryType" nillable="true" type="TransactionStatusQueryType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RecurringType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="Schedule" type="ScheduleType"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Interval" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="DayOfMonth" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="StartDate" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="TimesToProcess" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="NonBusinessDay" type="NonBusinessDayType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ScheduleType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MONTHLY"/>
+            <xs:enumeration value="DAILY"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NonBusinessDayType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="THATDAY"/>
+            <xs:enumeration value="BEFORE"/>
+            <xs:enumeration value="AFTER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="RecurringStatusQueryType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecurringID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="StartDate" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="EndDate" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfRecurringStatusQueryType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="RecurringStatusQueryType" nillable="true" type="RecurringStatusQueryType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VaultStorageType">
+        <!-- In the original XSD this is a sequence. However, documentation shows examples where order does not matter. -->
+        <xs:all>
+            <xs:element minOccurs="1" maxOccurs="1" name="Service" type="VaultServiceType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="GUID" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:simpleType name="VaultServiceType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CREATE"/>
+            <xs:enumeration value="UPDATE"/>
+            <xs:enumeration value="RETRIEVE"/>
+            <xs:enumeration value="DELETE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="VaultOperationType">
+        <!-- In the original XSD this is a sequence. However, documentation shows examples where order does not matter. -->
+        <xs:all>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultStorage" type="VaultStorageType"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="VaultAccountType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Company" type="CompanyType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Contact" type="PersonType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AccountQueryType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VaultStatusQueryType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UIFieldType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Visible" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UINameType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="FirstName" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="MI" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="LastName" type="UIFieldType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UIAddressType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="City" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="State" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Country" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Telephone" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="UIFieldType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UIPersonType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Name" type="UINameType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Address" type="UIAddressType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UITransactionBaseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Reference1" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="SubtotalAmount" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TaxAmount" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ShippingAmount" type="UIFieldType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AuthCode" type="UIFieldType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VaultOperationUIType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="UIFieldType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SinglePaymentUIType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionBase" type="UITransactionBaseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Customer" type="UIPersonType"/>
+            <!-- Were the following elements dropped from the spec? Answer: THese are for SED not SEVD and were included in error. Thus they are commented out.-->
+            <!-- xs:element minOccurs="1" maxOccurs="1" name="PostAuthorizationAnalysis" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="CVVPrompt" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="CanEditAccount" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="CanUseExternalDevice" type="xs:boolean"/ -->
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--  NOTE: Not defined in original XSD. SPS says they do not have XSD for it. -->
+    <xs:complexType name="UIBorderStyleType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="BorderBottom" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="BorderColor" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="BorderLeft" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="BorderRight" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="BorderTop" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- NOTE: Not defined in original XSD. SPS says they do not have XSD for it. -->
+    <xs:complexType name="UIFieldStyleType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="Color" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Family" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Size" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- NOTE: Not defined in original XSD. SPS says they do not have XSD for it. -->
+    <xs:complexType name="UIWizardType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="BackgroundColor" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="BorderStyle" type="UIBorderStyleType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="FieldStyle" type="UIFieldStyleType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="LabelStyle" type="UIFieldStyleType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- NOTE: Not defined in original XSD. SPS says they do not have XSD for it. -->
+    <xs:complexType name="UIWizardSupportType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Visible" type="xs:boolean"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="BackgroundColor" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="BorderStyle" type="UIBorderStyleType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="FieldStyle" type="UIFieldStyleType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="LabelStyle" type="UIFieldStyleType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- NOTE: Defined improperly in original XSD. SPS says they do not have XSD for it. See UIThemeType.  -->
+    <xs:complexType name="UIStyleType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Wizard" type="UIWizardType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="WizardStepLeft" type="UIWizardType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="WizardStepRight" type="UIWizardType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="WizardSupport" type="UIWizardSupportType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="WizardTitle" type="UIWizardType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Buttons" type="UIWizardType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UIDisplayType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="Header" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="SupportLink" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="CheckPayment" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="CardPayment" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="SELogo" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- NOTE: this is actually defined as UIStyle in the XSD available from SPS. -->
+    <xs:complexType name="UIThemeType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="MainFontColor" type="HexColorType"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="MainBackColor" type="HexColorType"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="HeaderBackColor" type="HexColorType"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="TotalsBoxBackColor" type="HexColorType"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="DividerBackColor" type="HexColorType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="HexColorType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="UIType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="UIStyle" type="UIStyleType"/> <!-- this is not defined in original schema, added by ddorothy -->
+            <xs:element minOccurs="0" maxOccurs="1" name="Display" type="UIDisplayType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Theme" type="UIThemeType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="SinglePayment" type="SinglePaymentUIType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultOperation" type="VaultOperationUIType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PostbackType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="HttpsUrl" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PaymentType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionBase" type="TransactionBaseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Customer" type="PersonType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ShippingRecipient" type="PersonType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Level2" type="Level2Type"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Level3" type="Level3Type"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Recurring" type="RecurringType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultStorage" type="VaultStorageType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Postback" type="PostbackType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfPaymentType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentType" nillable="true" type="PaymentType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BatchType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Net" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Count" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="BatchPayment" type="BatchPaymentType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BatchPaymentType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CREDITCARD"/>
+            <xs:enumeration value="PURCHASECARD"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="Request_v1" nillable="true" type="Request_v1"/>
+    <xs:complexType name="Request_v1">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Application" type="ApplicationType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="IsSplitPayment" type="xs:boolean"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Payments" type="ArrayOfPaymentType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="BatchType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionStatusQueries" type="ArrayOfTransactionStatusQueryType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecurringStatusQueries" type="ArrayOfRecurringStatusQueryType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultStatusQuery" type="VaultStatusQueryType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultOperation" type="VaultOperationType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultAccount" type="VaultAccountType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="UI" type="UIType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AccountQuery" type="AccountQueryType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Postback" type="PostbackType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- BEGIN Response related types. -->
+    <xs:complexType name="ResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ResponseIndicator" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ResponseMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseType" nillable="true" type="ResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VaultResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="GUID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ExpirationDate" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Last4" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="PaymentDescription" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="PaymentTypeID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RecurringResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecurringID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransactionResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="AuthCode" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AVSResult" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="CVVResult" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VANReference" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Last4" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="PaymentDescription" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="PaymentTypeID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Reference1" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionDate" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AuxiliaryData" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="EntryMode" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="TaxAmount" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="ShippingAmount" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfTransactionResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionResponseType" nillable="true" type="TransactionResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PaymentResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultResponse" type="VaultResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecurringResponse" type="RecurringResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionResponse" type="TransactionResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Customer" type="PersonType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfPaymentResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentResponseType" nillable="true" type="PaymentResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BatchResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="BatchReference" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Net" type="xs:double"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Count" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="BatchPayment" type="BatchPaymentType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransactionSettlementStatusType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionType" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="SettlementType" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="SettlementDate" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="BatchReference" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfTransactionSettlementStatusType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionSettlementStatusType" nillable="true" type="TransactionSettlementStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransactionStatusQueryResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultResponse" type="VaultResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecurringResponse" type="RecurringResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionResponse" type="TransactionResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionSettlementStatus" type="TransactionSettlementStatusType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Customer" type="PersonType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfTransactionStatusQueryResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionStatusQueryResponseType" nillable="true" type="TransactionStatusQueryResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RecurringStatusQueryResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Responses" type="ArrayOfResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionResponses" type="ArrayOfTransactionResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionSettlementStatuses" type="ArrayOfTransactionSettlementStatusType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Customers" type="ArrayOfPersonType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfRecurringStatusQueryResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="RecurringStatusQueryResponseType" nillable="true" type="RecurringStatusQueryResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VaultStatusQueryResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultResponse" type="VaultResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VaultAccountResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultAccount" type="VaultAccountType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AccountQueryResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Merchant" type="MerchantType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Services" type="ArrayOfString"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Active" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Response_v1" nillable="true" type="Response_v1"/>
+    <xs:complexType name="Response_v1">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="PaymentResponses" type="ArrayOfPaymentResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="BatchResponse" type="BatchResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="TransactionStatusQueryResponses" type="ArrayOfTransactionStatusQueryResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecurringStatusQueryResponses" type="ArrayOfRecurringStatusQueryResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultStatusQueryResponse" type="VaultStatusQueryResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultResponse" type="VaultResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="VaultAccountResponse" type="VaultAccountResponseType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AccountQueryResponse" type="AccountQueryResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfString">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Validation" nillable="true" type="Validation"/>
+
+    <xs:complexType name="Validation"/>
+</xs:schema>
